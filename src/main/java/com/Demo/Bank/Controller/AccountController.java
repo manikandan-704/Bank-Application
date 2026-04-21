@@ -5,6 +5,7 @@ import com.Demo.Bank.service.ServiceImpl.serviceImplementation;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController  //Control all the api calls
@@ -36,6 +37,15 @@ public class AccountController {
         return simpleService.updateAccount(id,account);
     }
 
+    @DeleteMapping("/{id}")
+    public String deleteAccount(@PathVariable Long id){
+        return simpleService.deleteAccount(id);
+    }
+
+    @PatchMapping("/{id}")
+    public String patchAccount(@PathVariable Long id,@RequestBody Map<String,Object>update){
+        return simpleService.patchAccount(id,update);
+    }
 
 
 }
