@@ -2,10 +2,10 @@ package com.Demo.Bank.Controller;
 
 import com.Demo.Bank.entity.Account;
 import com.Demo.Bank.service.ServiceImpl.serviceImplementation;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
 
 @RestController  //Control all the api calls
 @RequestMapping("/account")
@@ -20,4 +20,22 @@ public class AccountController {
     public String createAccount(@RequestBody Account account){
         return simpleService.createAccount(account);
     }
+
+    @GetMapping
+    public List<Account> getAllAccounts(){
+        return simpleService.getAllAccounts();
+    }
+
+    @GetMapping("/{id}")
+    public Optional<Account> getAccountById(@PathVariable Long id){
+        return simpleService.getAccountById(id);
+    }
+
+    @PutMapping("/{id}")
+    public String updateAccount(@PathVariable Long id,@RequestBody Account account){
+        return simpleService.updateAccount(id,account);
+    }
+
+
+
 }
