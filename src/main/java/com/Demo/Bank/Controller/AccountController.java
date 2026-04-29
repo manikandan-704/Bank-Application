@@ -1,7 +1,9 @@
 package com.Demo.Bank.Controller;
 
+import com.Demo.Bank.dto.AccountDto;
 import com.Demo.Bank.entity.Account;
 import com.Demo.Bank.service.ServiceImpl.serviceImplementation;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,10 +11,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 @RestController  //Control all the api calls
 @RequestMapping("/account")
 public class AccountController {
+
+    private static final Logger log= (Logger) LoggerFactory.getLogger(AccountController.class);
 
     private final serviceImplementation simpleService;
     public AccountController(serviceImplementation simpleService){
@@ -20,7 +25,7 @@ public class AccountController {
     }    // constructor
 
     @PostMapping
-    public ResponseEntity<String> createAccount(@RequestBody Account account){
+    public ResponseEntity<Account> createAccount(@RequestBody AccountDto account){
         simpleService.createAccount(account);
         return ResponseEntity.status(HttpStatus.CREATED).body("Account Created Successfully");
     }

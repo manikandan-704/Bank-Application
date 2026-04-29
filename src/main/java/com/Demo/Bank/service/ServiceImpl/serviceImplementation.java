@@ -1,17 +1,21 @@
 package com.Demo.Bank.service.ServiceImpl;
 
+import com.Demo.Bank.dto.AccountDto;
 import com.Demo.Bank.entity.Account;
 import com.Demo.Bank.repository.AccountRepository;
 import com.Demo.Bank.service.serviceInterface;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 @Service
 public class serviceImplementation implements serviceInterface {
 
+    private static final Logger log= (Logger) LoggerFactory.getLogger(serviceImplementation.class);
     private final AccountRepository accountRepository;
 
     public serviceImplementation(AccountRepository accountRepository) {
@@ -19,7 +23,7 @@ public class serviceImplementation implements serviceInterface {
     }   // Constructor
 
     @Override
-    public void createAccount(Account account) {
+    public void createAccount(AccountDto account) {
         accountRepository.save(account);
     }
 

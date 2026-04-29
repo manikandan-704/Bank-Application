@@ -16,6 +16,50 @@ public class Account {
     private Double balance;
     private String status;
 
+    // Can be done using lamb ark @Builder,@Getter,@No args
+    public Account(){}
+
+    private Account(Builder builder){
+        this.accountNumber=builder.accountNumber;
+        this.AccountHolderName=builder.AccountHolderName;
+        this.email=builder.email;
+        this.balance=builder.balance;
+        this.status=builder.status;
+    }
+
+    private static class Builder{
+        private String accountNumber;
+        private String AccountHolderName;
+        private String email;
+        private Double balance;
+        private String status;
+
+        public Builder accountNumber(String accountNumber){
+            this.accountNumber=accountNumber;
+            return this;
+        }
+        public Builder AccountHolderName(String AccountHolderName){
+            this.AccountHolderName=AccountHolderName;
+            return this;
+        }
+        public Builder email(String email){
+            this.email=email;
+            return this;
+        }
+        public Builder balance(Double balance){
+            this.balance=balance;
+            return this;
+        }
+        public Builder status(String status){
+            this.status=status;
+            return this;
+        }
+
+        public Account build(){
+            return new Account(this);
+        }
+    }
+
     public long getId() {
         return id;
     }
