@@ -2,6 +2,8 @@ package com.Demo.Bank.Controller;
 
 import com.Demo.Bank.entity.Account;
 import com.Demo.Bank.service.ServiceImpl.serviceImplementation;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,23 +20,24 @@ public class AccountController {
     }    // constructor
 
     @PostMapping
-    public String createAccount(@RequestBody Account account){
-        return simpleService.createAccount(account);
+    public ResponseEntity<String> createAccount(@RequestBody Account account){
+        simpleService.createAccount(account);
+        return ResponseEntity.status(HttpStatus.CREATED).body("Account Created Successfully");
     }
 
     @GetMapping
-    public List<Account> getAllAccounts(){
-        return simpleService.getAllAccounts();
+    public ResponseEntity<List<Account>> getAllAccounts(){
+        return ResponseEntity.status(HttpStatus.OK).body(simpleService.getAllAccounts());
     }
 
     @GetMapping("/{id}")
-    public Optional<Account> getAccountById(@PathVariable Long id){
-        return simpleService.getAccountById(id);
+    public ResponseEntity<Optional<Account>> getAccountById(@PathVariable Long id){
+        return ResponseEntity.status(HttpStatus.OK).body(simpleService.getAccountById(id));
     }
 
     @PutMapping("/{id}")
-    public String updateAccount(@PathVariable Long id,@RequestBody Account account){
-        return simpleService.updateAccount(id,account);
+    public ResponseEntity<String> updateAccount(@PathVariable Long id,@RequestBody Account account){
+        return ResponseEntity.status(HttpStatus.OK).body(simpleService.updateAccount(id,account));
     }
 
     @DeleteMapping("/{id}")

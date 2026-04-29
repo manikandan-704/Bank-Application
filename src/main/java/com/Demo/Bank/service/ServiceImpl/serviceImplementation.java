@@ -19,9 +19,8 @@ public class serviceImplementation implements serviceInterface {
     }   // Constructor
 
     @Override
-    public String createAccount(Account account) {
+    public void createAccount(Account account) {
         accountRepository.save(account);
-        return "Account Created";
     }
 
     @Override

@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Optional;
 
 public interface serviceInterface {
-    String createAccount(Account account);
+    void createAccount(Account account);
     List<Account> getAllAccounts();
     Optional<Account> getAccountById(Long id);
     String updateAccount(Long id,Account account);
