@@ -27,7 +27,7 @@ public class Account {
         this.status=builder.status;
     }
 
-    private static class Builder{
+    public static class Builder{
         private String accountNumber;
         private String AccountHolderName;
         private String email;
